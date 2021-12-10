@@ -165,7 +165,7 @@ export class UrlHashingSystemController {
     }
   }
 
-  @Get('dashboard')
+  @Get('view/dashboard')
   @ApiResponse({
     status: 200,
     description: 'Redirect to UI view',

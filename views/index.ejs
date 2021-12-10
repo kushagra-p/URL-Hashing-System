@@ -8,7 +8,7 @@
   <script id="getAll" type='text/javascript' src='/url/get-all'></script>
   <script type='text/javascript'>
     window.onload = function () {
-    setTimeout(Reload,500)
+    setTimeout(Reload,1500)
     };
     function Reload(){
       var jsonObj = document.getElementById("getAll").src;
@@ -40,7 +40,7 @@
     <form action="/url" method="POST" target="hiddenFrame" class="my-4 form-inline">
       <label for="longUrl" class="sr-only">Url</label>
       <input required placeholder="Url" type="url" name="longUrl" id="longUrl" class="form-control col mr-2">
-      <button class="btn btn-success" type="submit" onclick="setTimeout(Reload,500)">Shrink</button>
+      <button class="btn btn-success" type="submit" onclick="setTimeout(Reload,1500)">Shrink</button>
     </form>
     <iframe name="hiddenFrame" width="0" height="0" style="display: none;"></iframe>
     <table class="table table-striped table-responsive">
