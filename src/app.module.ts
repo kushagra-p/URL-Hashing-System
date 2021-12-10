@@ -5,7 +5,7 @@ import { UrlHashingSystemModule } from './url-hashing-system/url-hashing-system.
 import { MongooseModule } from '@nestjs/mongoose';
 import { UrlHashingSystemService } from './url-hashing-system/url-hashing-system.service';
 
-let url= process.env.MONGOURI || 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false'
+let url= process.env.MONGOURI || 'mongodb+srv://mongodb:mongodb@test.xjkoi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 @Module({
   imports: [
     UrlHashingSystemModule,
