@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script id="getAll" type='text/javascript' src='/url/get-all'></script>
+  <script type='text/javascript'>
+    window.onload = function () {
+    setTimeout(Reload,500)
+    };
+    function Reload(){
+      var jsonObj = document.getElementById("getAll").src;
+      let xhr = new XMLHttpRequest();
+      xhr.open('get', jsonObj);
+      xhr.setRequestHeader("Access-Control--Allow-Origin", "*");
+      xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      xhr.send(null);
+      xhr.onloadend = function () {
+        let data = JSON.parse(xhr.response)
+        let str=""
+        for (let i in data) {
+        str +=`<tr>
+            <td><a href="${data[i]['longUrl']}">${data[i]['longUrl']}</a></td>
+            <td><a href="/${data[i]['shortUrl']}">${data[i]['shortUrl']}</a></td>
+            <td>${data[i]['count']}</td>
+          </tr>`
+        }
+        document.getElementById('body').innerHTML = str;
+      };
+    }
+  </script>
+  <title>Dashboard</title>
+</head>
+<body>
+  <div class="container">
+      <br>
+    <h1>URL Hashing System</h1>
+    <form action="/url" method="POST" target="hiddenFrame" class="my-4 form-inline">
+      <label for="longUrl" class="sr-only">Url</label>
+      <input required placeholder="Url" type="url" name="longUrl" id="longUrl" class="form-control col mr-2">
+      <button class="btn btn-success" type="submit" onclick="setTimeout(Reload,500)">Shrink</button>
+    </form>
+    <iframe name="hiddenFrame" width="0" height="0" style="display: none;"></iframe>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>Full URL</th>
+          <th>Short URL</th>
+          <th>Views</th>
+        </tr>
+      </thead>
+      <tbody id='body'>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
